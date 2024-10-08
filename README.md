@@ -37,6 +37,7 @@ Aplikasi Kuis ini adalah aplikasi web yang dibangun menggunakan React. Aplikasi 
 - Setelah kuis selesai, lihat hasil Anda.
 
 ## Dokumentasi
+![image](https://github.com/user-attachments/assets/39921643-53ce-4ca4-a60c-4bb4c0e5de7d)
 
 ### Catatan:
 - Ganti `username` dengan nama pengguna GitHub Anda.
