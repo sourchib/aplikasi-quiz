@@ -1,14 +1,14 @@
 # Aplikasi Kuis dengan React
 
 Aplikasi Kuis ini adalah aplikasi web yang dibangun menggunakan React. Aplikasi ini memungkinkan pengguna untuk mengambil kuis berdasarkan pertanyaan dari Open Trivia Database. Pengguna dapat login, mengambil kuis, dan melihat hasilnya setelah menyelesaikan kuis.
-a. Memiliki fitur login
-b. Untuk api soal bisa ambil dari https://opentdb.com/
-c. Jumlah & type soal bebas.
-d. Total soal & jumlah yang dikerjakan ditampilkan
-e. Memiliki Timer. Jumlah waktu pengerjaan kuis bebas.
-f. Satu halaman hanya menampilkan satu soal. Jadi ketika user telah memilih jawaban, langsung pindah soal.
-g. Jika timer habis, soal akan ditutup & menampilkan hasil pengerjaan (jumlah benar, jumlah salah & jumlah jawab).
-h. Ketika browser ditutup, ada mekanisme resume kuis dengan localstorage DOM.
+- a. Memiliki fitur login
+- b. Untuk api soal bisa ambil dari https://opentdb.com/
+- c. Jumlah & type soal bebas.
+- d. Total soal & jumlah yang dikerjakan ditampilkan
+- e. Memiliki Timer. Jumlah waktu pengerjaan kuis bebas.
+- f. Satu halaman hanya menampilkan satu soal. Jadi ketika user telah memilih jawaban, langsung pindah soal.
+- g. Jika timer habis, soal akan ditutup & menampilkan hasil pengerjaan (jumlah benar, jumlah salah & jumlah jawab).
+- h. Ketika browser ditutup, ada mekanisme resume kuis dengan localstorage DOM.
 
 ## Fitur
 
