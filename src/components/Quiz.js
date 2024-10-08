@@ -18,25 +18,35 @@ const Quiz = ({ onQuizEnd }) => {
     loadQuestions();
   }, []);
 
+  // Effect untuk mengelola timer
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setTimeLeft((prevTimeLeft) => {
+        if (prevTimeLeft <= 0) {
+          clearInterval(timerId); // Hentikan timer jika waktu habis
+          onQuizEnd(score, questions.length); // Akhiri kuis jika waktu habis
+          return 0; // Pastikan waktu tidak negatif
+        }
+        return prevTimeLeft - 1; // Kurangi waktu
+      });
+    }, 1000);
+
+    return () => clearInterval(timerId); // Bersihkan interval saat komponen di-unmount
+  }, [score, questions.length, onQuizEnd]);
+
   const handleAnswer = (isCorrect) => {
     if (isCorrect) setScore(score + 1);
     const nextQuestionIndex = currentQuestionIndex + 1;
     if (nextQuestionIndex < questions.length) {
       setCurrentQuestionIndex(nextQuestionIndex);
     } else {
-      onQuizEnd(score, questions.length);
+      onQuizEnd(score, questions.length); // Akhiri kuis jika sudah menjawab semua pertanyaan
     }
   };
 
-  useEffect(() => {
-    if (timeLeft <= 0) {
-      onQuizEnd(score, questions.length);
-    }
-  }, [timeLeft]);
-
   return (
     <div>
-      <Timer timeLeft={timeLeft} setTimeLeft={setTimeLeft} />
+      <Timer timeLeft={timeLeft} />
       {questions.length > 0 && (
         <Question
           data={questions[currentQuestionIndex]}

@@ -1,38 +1,32 @@
+// App.js
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
 import Quiz from './components/Quiz';
-import Result from './components/Result';
 
-function App() {
-  const [user, setUser] = useState(null);
-  const [quizEnded, setQuizEnded] = useState(false);
+const App = () => {
+  const [isQuizActive, setIsQuizActive] = useState(true);
   const [score, setScore] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
 
-  const handleLogin = (username) => {
-    setUser(username);
-  };
-
   const handleQuizEnd = (finalScore, total) => {
+    setIsQuizActive(false);
     setScore(finalScore);
     setTotalQuestions(total);
-    setQuizEnded(true);
+    // Lakukan hal lain seperti menampilkan hasil
   };
 
   return (
-    <Router>
-      <div className="App">
-        {!user ? (
-          <Login onLogin={handleLogin} />
-        ) : !quizEnded ? (
-          <Quiz onQuizEnd={handleQuizEnd} />
-        ) : (
-          <Result score={score} total={totalQuestions} />
-        )}
-      </div>
-    </Router>
+    <div>
+      {isQuizActive ? (
+        <Quiz onQuizEnd={handleQuizEnd} />
+      ) : (
+        <div>
+          <h2>Hasil Kuis</h2>
+          <p>Skor: {score} dari {totalQuestions}</p>
+          {/* Tampilkan hasil lainnya */}
+        </div>
+      )}
+    </div>
   );
-}
+};
 
 export default App;

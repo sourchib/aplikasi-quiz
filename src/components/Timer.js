@@ -1,15 +1,15 @@
 // components/Timer.js
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const Timer = ({ timeLeft, setTimeLeft }) => {
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prevTime => (prevTime > 0 ? prevTime - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [setTimeLeft]);
+const Timer = ({ timeLeft }) => {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
 
-  return <div>Time Left: {timeLeft}s</div>;
+  return (
+    <div>
+      <h2>Waktu Tersisa: {minutes} : {seconds < 10 ? `0${seconds}` : seconds} detik</h2>
+    </div>
+  );
 };
 
 export default Timer;
