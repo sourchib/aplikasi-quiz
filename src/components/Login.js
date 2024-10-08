@@ -1,33 +1,45 @@
-// src/components/Login.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
-    const [username, setUsername] = useState('');
-    const navigate = useNavigate();
+const Login = ({ onLogin }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        // Simpan username di localStorage
-        localStorage.setItem('username', username);
-        navigate('/quiz');
-    };
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    // Verifikasi username dan password
+    if (username === 'admin' && password === 'admin') {
+      onLogin();
+    } else {
+      setErrorMessage('Username atau password salah');
+    }
+  };
 
-    return (
+  return (
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={handleLoginSubmit}>
         <div>
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <input
-                    type="text"
-                    placeholder="Masukkan username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <button type="submit">Login</button>
-            </form>
+          <label>Username: </label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
-    );
+        <div>
+          <label>Password: </label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
 };
 
 export default Login;
